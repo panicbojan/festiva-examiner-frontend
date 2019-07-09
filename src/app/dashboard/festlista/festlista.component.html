@@ -1,0 +1,34 @@
+<form>
+<div>
+        <input type="text" (change)="srch()" [(ngModel)]="searchInput" name="regex" id="regex"> 
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Festival name</th>
+                    <th>Bands</th>
+                </tr>
+            </thead>
+            <tbody *ngIf='data'>
+                <tr *ngFor="let fest of data;" >
+                    <td>{{fest.id}}</td>
+                    <td>{{fest.festival_name}}</td>
+                    <td>{{fest.band_names}}</td>
+                    <td><img src="http://127.0.0.1:8000/{{fest.image_url}}" style="width:50px;height:50px;"></td>
+                    <td><button id="{{fest.id}}" (click)="del(fest.id)">del</button></td>
+                    <td><button id="{{fest.id}}" routerLink="/update/{{fest.id}}">edit</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        <div class="glavni" *ngFor="let fest of data;">
+            <div  class="naslov" >
+                <b>{{fest.festival_name}}</b>
+            </div>
+            <div>
+                <p>Nastupaju: {{fest.band_names}}</p>
+            </div>
+        </div>   
+    </form>
+    <button (click)="dist()">Lokacija</button>

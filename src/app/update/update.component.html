@@ -1,0 +1,23 @@
+<form [formGroup] = "uploadForm" (submit)="Update($event)" enctype="multipart/form-data">
+    <div class="forma" *ngFor="let fest of data;">
+            <input type="hidden" name="id" id="id" value="{{fest.id}}">
+            <label for="longitude">Unesite sirinu festivala</label><br>
+            <input type="text" name="longitude" id="longitude" value="{{fest.longitude}}"><br><br>
+            <label for="latitude">Unesite duzinu festivala</label><br>
+            <input type="text" name="latitude" id="latitude" value="{{fest.latitude}}" ><br><br>
+            <label for="category_id">Unesite id festivala</label><br>
+            <input type="text" name="category_id" id="category_id" value="{{fest.category_id}}" ><br><br>
+        <label for="festivalName">Unesite ime festivala</label><br>
+        <input type="text" name="name" id="name" value="{{fest.festival_name}}" ><br><br>
+        <label for="latitude">Unesite bendove</label><br>
+        <input type="text" name="band_names" id="band_names" value="{{fest.band_names}}"><br><br>
+    
+        <label for="lokacija">Unesite lokaciju</label><br>
+        <input type="text" name="location" id="location" value="{{fest.location}}"><br><br>
+        <label for="image">Unesite sliku</label><br>
+        <input type="file" name="file" (change)="onFileSelected($event)">
+        
+    </div><br>
+    <input type="submit" value="Izmeni">
+    
+    </form>

@@ -11,15 +11,15 @@ export class LoginComponent implements OnInit {
 
   constructor(private http: HttpClient) { }
 
+  username:any;
+  password:any;
+
   ngOnInit() {
   }
 
-  loginUser(event){
-    event.preventDefault()
-    const target=event.target
-    const username=target.querySelector('#username').value
-    const password=target.querySelector('#password').value
-    var logData = {'username': username, 'password': password };
+  loginUser(){
+    console.log(this.username,this.password)
+    var logData = {'username': this.username, 'password': this.password };
     return this.http.post('http://127.0.0.1:8000/api/login',logData).subscribe(
       data => console.log(data)
     );

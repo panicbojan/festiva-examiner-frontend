@@ -1,0 +1,22 @@
+
+<form [formGroup] = "uploadForm" (submit)="Add()" enctype="multipart/form-data">
+<div class="forma">
+        <label for="longitude">Unesite sirinu festivala</label><br>
+        <input type="text" name="longitude" id="longitude" [(ngModel)]="longitude" [ngModelOptions]="{standalone: true}"><br><br>
+        <label for="latitude">Unesite duzinu festivala</label><br>
+        <input type="text" name="latitude" id="latitude" [(ngModel)]="latitude" [ngModelOptions]="{standalone: true}"><br><br>
+        <label for="category_id">Unesite id festivala</label><br>
+        <input type="text" name="category_id" id="category_id" [(ngModel)]="category_id" [ngModelOptions]="{standalone: true}"><br><br>
+    <label for="festivalName">Unesite ime festivala</label><br>
+    <input type="text" name="name" id="name" [(ngModel)]="name" [ngModelOptions]="{standalone: true}"><br><br>
+        <label for="latitude">Unesite bendove</label><br>
+        <input type="text" name="band_names" id="band_names" [(ngModel)]="band_names" [ngModelOptions]="{standalone: true}"><br><br>
+    <label for="lokacija">Unesite lokaciju</label><br>
+    <input type="text" name="location" id="location" [(ngModel)]="location" [ngModelOptions]="{standalone: true}"><br><br>
+    <label for="image">Unesite sliku</label><br>
+    <input type="file" name="file" (change)="onFileSelected($event)">
+    
+</div><br>
+<input type="submit" value="Dodaj">
+
+</form>

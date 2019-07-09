@@ -1,5 +1,12 @@
-<form (submit)="loginUser($event)">
-    <input type="text" placeholder="Username" id="username">
-    <input type="text" placeholder="Password" id="password">
-    <input type="submit" value="submit">
+<form (submit)="loginUser()">
+    <div>
+    <div class="form-group">
+            <label for="exampleInputEmail1">Username</label>
+            <input type="text" class="form-control" placeholder="Username" id="username" style='width:500px' [(ngModel)]="username" [ngModelOptions]="{standalone: true}"></div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" placeholder="Password" id="password" style='width:500px' [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+          </div>
+          <input type="submit" class="btn btn-primary" value="Log in">
+       </div>   
 </form>
