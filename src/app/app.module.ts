@@ -5,13 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FestformaComponent } from './dashboard/festforma/festforma.component';
 import { FestlistaComponent } from './dashboard/festlista/festlista.component'
 import { FormsModule } from '@angular/forms'
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateComponent } from './update/update.component';
+import { CategoryComponent } from './category/category.component';
+import { CommentsComponent } from './comments/comments.component';
+import { AuthGuard } from './auth.guard';
+import { Observable } from 'rxjs';
+import { TokenInterceptorService } from './token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -22,6 +27,8 @@ import { UpdateComponent } from './update/update.component';
     FestformaComponent,
     FestlistaComponent,
     UpdateComponent,
+    CategoryComponent,
+    CommentsComponent,
     
   ],
   imports: [
@@ -44,16 +51,28 @@ import { UpdateComponent } from './update/update.component';
         component: DashboardComponent
       },
       {
-        path:'update',
-        component:UpdateComponent
+        path:'update/:festival_id',
+        component:UpdateComponent,
+        canActivate: [AuthGuard]
       },
       {
-        path:'update/:festival_id',
-        component:UpdateComponent
+        path:'category',
+        component:CategoryComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path:'comments',
+        component:CommentsComponent,
+        canActivate: [AuthGuard]
       }
     ])
   ],
-  providers: [HttpClient],
+  providers: [HttpClient, AuthGuard,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

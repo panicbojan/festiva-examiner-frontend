@@ -1,0 +1,13 @@
+<table class="table">
+        <thead>
+            <tr>
+                <th>Komentar</th>
+            </tr>
+        </thead>
+        <tbody *ngIf='data'>
+            <tr *ngFor="let fest of data;" >
+                <td>{{fest.comment}}</td>
+                <td><button id="{{fest.id}}" (click)="deleteComment(fest.id)">Obrisi</button></td>
+            </tr>
+        </tbody>
+    </table>

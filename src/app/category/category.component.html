@@ -1,0 +1,13 @@
+<table class="table">
+        <thead>
+            <tr>
+                <th>Category ID</th>
+            </tr>
+        </thead>
+        <tbody *ngIf='data'>
+            <tr *ngFor="let fest of data;" >
+                <td>{{fest.category_name}}</td>
+                <td><button id="{{fest.id}}" (click)="deleteCategory(fest.id)">Obrisi</button></td>
+            </tr>
+        </tbody>
+    </table>

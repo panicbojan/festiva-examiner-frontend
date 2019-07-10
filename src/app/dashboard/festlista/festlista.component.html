@@ -1,7 +1,23 @@
-<form>
-<div>
-        <input type="text" (change)="srch()" [(ngModel)]="searchInput" name="regex" id="regex"> 
+<button routerLink="/login" *ngIf="!authService.loggedIn()">Login</button>
+<button *ngIf="authService.loggedIn()" (click)="authService.logoutUser()">Logout</button>
 
+        <form (submit)="dist()">
+        <input type="text" [(ngModel)]="searchInput" [ngModelOptions]="{standalone: true}" name="regex" id="regex" nullValue/> 
+        <select [(ngModel)]="distance" [ngModelOptions]="{standalone: true}">
+            <option value='' selected>Select distance</option>
+            <option value="200" >200km</option>
+            <option value="5000">5000km</option>
+            <option value="10000">10000km</option>
+        </select>
+
+        <select [(ngModel)]="category" [ngModelOptions]="{standalone: true}">
+                <option value='' selected>Select category</option>
+            <option  *ngFor="let cat of categories;" value="{{cat.id}}">{{cat.category_name}}</option>
+               
+            </select>
+                <input type="submit" value="Pretrazi">
+        </form>
+        <div *ngIf="authService.loggedIn()">
         <table class="table">
             <thead>
                 <tr>
@@ -21,7 +37,10 @@
                 </tr>
             </tbody>
         </table>
+        <button routerLink='/category'>Obrisi kategorije</button>
+        <button routerLink='/comments'>Obrisi komentare</button>
     </div>
+    <div *ngIf="!authService.loggedIn()">
         <div class="glavni" *ngFor="let fest of data;">
             <div  class="naslov" >
                 <b>{{fest.festival_name}}</b>
@@ -30,5 +49,5 @@
                 <p>Nastupaju: {{fest.band_names}}</p>
             </div>
         </div>   
-    </form>
-    <button (click)="dist()">Lokacija</button>
+    </div>
+    

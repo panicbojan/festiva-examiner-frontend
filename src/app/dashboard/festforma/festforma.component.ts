@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
-
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-festforma',
@@ -19,7 +19,7 @@ export class FestformaComponent implements OnInit {
   location:string;
   band_names:string;
 
-  constructor(private formBuilder: FormBuilder,private http:HttpClient) { }
+  constructor(private formBuilder: FormBuilder,private http:HttpClient, private authService:AuthService) { }
 
   ngOnInit() {
     this.uploadForm = this.formBuilder.group({
